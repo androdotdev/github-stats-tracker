@@ -37,7 +37,7 @@ export default async function Dashboard() {
         <h1 className="text-3xl font-bold text-white mb-4">Welcome, {user?.name || user?.email}</h1>
         <p className="text-lg text-gray-300">Here are your GitHub stats:</p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-4 p-4">
             <StatsCard title="Total Commits" value={stats.reduce((acc,stat)=> acc+stat.commits, 0).toString()} />
             <StatsCard title="Total Pull Requests" value={stats.reduce((acc,stat)=> acc+stat.pullRequests, 0).toString()} />
             <StatsCard title="Total Issues" value={stats.reduce((acc,stat)=> acc+stat.issues, 0).toString()} />

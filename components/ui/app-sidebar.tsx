@@ -10,10 +10,12 @@ import { prisma } from "@/lib/db"
 
 
 export async function AppSidebar() {
+
   
   const session = await auth.api.getSession({
     headers: await headers()
   })
+  if (!session) return null
   const user = await prisma.user.findUnique({
     where: { id: session?.user.id },
     select: { username: true, name: true, image: true }

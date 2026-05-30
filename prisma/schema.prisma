@@ -29,6 +29,9 @@ model User {
   updatedAt     DateTime       @updatedAt
   sessions      Session[]
   accounts      Account[]
+  publicRepos  Int?
+  followers    Int?
+  following    Int?
 
   @@unique([email])
   @@map("user")

@@ -4,6 +4,7 @@ import {auth} from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { getUserStreaks } from "@/lib/streaks";
 
 export default async function Dashboard() {
     const session = await auth.api.getSession({
@@ -32,6 +33,10 @@ export default async function Dashboard() {
         }
     })
 
+    const streaks = user
+        ? await getUserStreaks(user.id)
+        : { currentStreak: 0, longestStreak: 0 }
+
     return (
         <>
         <h1 className="text-3xl font-bold text-white mb-4">Welcome, {user?.name || user?.email}</h1>
@@ -54,6 +59,12 @@ export default async function Dashboard() {
                 prs_merged: stat.prs_merged,
                 reviews: stat.reviews
             }))} />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4 p-4">
+            <StatsCard title="Current Streak" value={streaks.currentStreak.toString()} />
+
+            <StatsCard title="Longest Streak" value={streaks.longestStreak.toString()} />
         </div>
 
         </>

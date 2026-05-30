@@ -41,7 +41,10 @@ export const auth = betterAuth({
                     username: responseData.login,
                     avatarUrl: responseData.avatar_url,
                     bio: responseData.bio,
-                    githubId: responseData.id.toString()
+                    githubId: responseData.id.toString(),
+                    publicRepos: responseData.public_repos,
+                    followers: responseData.followers,
+                    following: responseData.following
                 } 
             })
         }

@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  allowedDevOrigins: ['landmine-decree-ditto.ngrok-free.dev'],
+  allowedDevOrigins: [process.env.AUTH_URL as string],
 
 };
 

@@ -6,10 +6,11 @@ import { prisma } from "./db";
 import { createAuthMiddleware } from "better-auth/api";
 
 export const auth = betterAuth({
+    secret: process.env.BETTER_AUTH_SECRET as string,
     database: prismaAdapter(prisma, {
         provider: "postgresql",  
     }),
-    trustedOrigins: ["https://landmine-decree-ditto.ngrok-free.dev"],
+    trustedOrigins: [process.env.AUTH_URL as string],
     socialProviders: { 
     github: { 
       clientId: process.env.GITHUB_CLIENT_ID as string, 
